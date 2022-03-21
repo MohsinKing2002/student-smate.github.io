@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <title>www.studentMate.com | A real mate for the students</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    .quizBox{
+        padding: 1rem 4rem;
+        background-color: azure;
+        width: 35vw;
+        margin: 9.5% auto;
+        box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.5);
+    }
+    .question{
+        font-size: 1.4rem;
+        padding: 10px;
+        color: midnightblue;
+        letter-spacing: 1.5px;
+    }
+    .quizBox ul{
+        padding: 20px 10px;
+    }
+    .quizBox ul li{
+        list-style: none;
+        margin: 10px 0;
+        font-size: 1.1rem;
+        font-weight: 400;
+        letter-spacing: 1px;
+        color: midnightblue;
+    }
+    #quizBtn{
+        position: relative;
+        left: 10vw;
+    }
+
+    .scoreArea{
+        display: none;
+        padding: 1rem;
+        text-align: center;
+        background-color: rgb(70, 233, 225);
+        width: 15vw;
+        margin: auto;
+        margin-top: 20px;
+    }
+
+    /*  responsiveness  */
+    @media screen and (max-width: 1200px){
+        .quizBox{
+            width: 85%;
+            padding: 5px 10px;
+        }
+        .question{
+            font-size: 12px;
+            letter-spacing: 0.3px;
+            font-weight: 400;
+        }
+        .quizBox ul li{
+            font-size: 11px;
+            letter-spacing: 0.3px;
+        }
+
+        #quizBtn{
+            left: 23vw;
+        }
+
+        .scoreArea{
+            width: 75%;
+        }
+    }
+</style>
+<body>
+    <nav class="flex res">
+        <div class="logo flex">
+            <img src="img/logo.png" alt="">
+            <i class="brand">Student's Mate</i>
+        </div>
+    
+        <ul class="flex">
+            <a href="index.html">Home</a>
+            <a href="#quiz">Quiz Game</a>
+            <a href="calcy.html">Calcy</a>
+            <a href="grammerly.html">Grammerly</a>
+        </ul>
+    </nav>
+    <div class="container">
+        <div id="quiz" class="quizBox">
+            <h3 class="question">Question will appear here</h3>
+
+            <ul>
+                <li>
+                    <input type="radio" name="ans" id="ans1" class="answer">
+                    <label for="ans1" id="option1">Answer one</label>
+                </li>
+
+                <li>
+                    <input type="radio" name="ans" id="ans2" class="answer">
+                    <label for="ans2" id="option2">Answer two</label>
+                </li>
+
+                <li>
+                    <input type="radio" name="ans" id="ans3" class="answer">
+                    <label for="ans3" id="option3">Answer three</label>
+                </li>
+
+                <li>
+                    <input type="radio" name="ans" id="ans4" class="answer">
+                    <label for="ans4" id="option4">Answer four</label>
+                </li>
+            </ul>
+
+            <button id="quizBtn" class="btn">Submit</button>
+
+            <div class="scoreArea">
+                <h1 class="aboutContents">Your Score : <span id="score"></span></h1>
+                <button class="btn" onclick="location.reload();">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Copyrights&copy; | <i class="brand">student's Mate &reg;</i> | Alrights reserveds
+    </footer>
+</body>
+<script>
+
+    let quizData = [
+        {
+            question: "Q-1 : What's HTML stands for ?",
+            ans1: "Hypertext Markup Language",
+            ans2: "Hight Temperature Melt level",
+            ans3: "Hyper Text Machine Language",
+            ans4: "Hyper Text Markup Language",
+            ans: 'ans1'
+        },
+
+        {
+            question: "Q-1 : What's CSS stands for ?",
+            ans1: "Cascade style sheet",
+            ans2: "Cascading Style Sheets",
+            ans3: "Cartoon Style Sheets",
+            ans4: "Color Stable sheet",
+            ans: "ans2"
+        },
+
+        {
+            question: "Q-1 : What's OOP stands for ?",
+            ans1: "Objects Orranted Props",
+            ans2: "Object Orianted Programme",
+            ans3: "Object Objects Partitions",
+            ans4: "Object Oriented Programming",
+            ans: "ans4"
+        },
+
+        {
+            question: "Q-1 : What's JS stands for ?",
+            ans1: "Java Standard",
+            ans2: "Jordon Sea",
+            ans3: "Javascript",
+            ans4: "not of the aboves",
+            ans: 'ans3'
+        }
+    ];
+
+    let question = document.querySelector('.question');
+    let option1 = document.querySelector('#option1')
+    let option2 = document.querySelector('#option2')
+    let option3 = document.querySelector('#option3')
+    let option4 = document.querySelector('#option4')
+
+    let quizBtn = document.querySelector('#quizBtn');
+    let scoreArea = document.querySelector('.scoreArea');
+    let score = document.querySelector('#score');
+
+    let answers = document.querySelectorAll('.answer')
+
+    let questionCount = 0;
+    let totalScore = 0;
+    let loadQuestions = ()=>{
+        question.innerHTML = quizData[questionCount].question;
+        option1.innerHTML = quizData[questionCount].ans1;
+        option2.innerHTML = quizData[questionCount].ans2;
+        option3.innerHTML = quizData[questionCount].ans3;
+        option4.innerHTML = quizData[questionCount].ans4;
+    }
+    
+    loadQuestions();
+    let getSelectedOption = ()=>{
+        let ans;
+        answers.forEach((currAnswer)=>{
+            if(currAnswer.checked){
+                ans = currAnswer.id;
+            }
+        })
+
+        return ans;
+    }
+
+    let deselectOptions = ()=>{
+        answers.forEach((currAnswer)=>{
+            currAnswer.checked = false;
+        })
+    }
+
+    quizBtn.addEventListener('click', ()=>{
+        let correctAns = getSelectedOption();
+        
+        if(correctAns === quizData[questionCount].ans){
+            totalScore++;
+        }
+        deselectOptions();
+        questionCount++;
+        if(questionCount < quizData.length){
+            loadQuestions();
+        }
+        else{
+            scoreArea.style.display = 'block';
+            score.innerHTML = `${totalScore} / ${quizData.length}`;
+        }
+    })
+
+</script>
+<script src="script.js"></script>
+</html>

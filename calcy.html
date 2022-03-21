@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <title>www.studentMate.com | A real mate for the students</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+
+    .calculator{
+        width: 30vw;
+        margin: 4% auto;
+        padding: 1rem 2rem;
+        background-color: azure;
+        box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.5);
+        justify-content: space-between;
+    }
+
+    .calcy{
+        text-align: center;
+    }
+
+    .calcy input{
+        font-size: 1.1rem;
+        width: 55%;
+        padding: 8px;
+        border: none;
+        outline: none;
+        margin: 5px 0;
+        text-align: center;
+        background-color: transparent;
+        border-bottom: 0.5px solid midnightblue;
+    }
+
+    #result{
+        display: none;
+        margin: 5px auto;
+        margin-top: 20px;
+        width: 18vw;
+        padding: 10px 2rem;
+        background-color: #47e7de;
+    }
+
+    @media screen and (max-width: 1200px){
+        .calculator{
+            width: 80%;
+            padding: 5px 10px;
+        }
+        #result{
+            width: 70%;
+            padding: 5px 10px;
+        }
+    }
+
+</style>
+<body>
+    <nav class="flex res">
+        <div class="logo flex">
+            <img src="img/logo.png" alt="">
+            <i class="brand">Student's Mate</i>
+        </div>
+    
+        <ul class="flex">
+            <a href="index.html">Home</a>
+            <a href="quiz.html">Quiz Game</a>
+            <a href="#Calcy">Calcy</a>
+            <a href="grammerly.html">Grammerly</a>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div id="Calcy" class="calculator">
+            <h2 class="title">Student's Grade Calculator</h2>
+            <hr>
+            <br>
+            <div class="calcy">
+                <input type="text" id="beng" name="beng" placeholder="Bengali">
+                <input type="text" id="eng" name="eng" placeholder="English">
+                <input type="text" id="math" name="math" placeholder="Mathematics">
+                <input type="text" id="phy" name="phy" placeholder="Physics">
+                <input type="text" id="chem" name="chem" placeholder="Chemistry">
+                <input type="text" id="bio" name="bio" placeholder="Biology">
+                <br>
+                <button id="calcyBtn" class="btn">Show Result</button>
+            </div>
+
+            <div id="result">
+                <h3 class="aboutContents">Total : <span id="total">450 / 500</span></h3>
+                <h3 class="aboutContents">Grade : <span id="grade">O</span></h3>
+                <h3 class="aboutContents">Percentage : <span id="perc">90</span></h3>
+                <h3 class="aboutContents">Status : <span id="status">Passed</span></h3>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Copyrights&copy; | <i class="brand">student's Mate &reg;</i> | Alrights reserveds
+    </footer>
+</body>
+<script>
+    let calcyBtn = document.getElementById('calcyBtn');
+
+    let result = document.getElementById('result');
+
+    let total = document.getElementById('total');
+    let grade = document.getElementById('grade');
+    let perc = document.getElementById('perc');
+    let status = document.getElementById('status');
+
+
+    calcyBtn.addEventListener('click', ()=>{
+        let beng = document.getElementById('beng').value;
+        let eng = document.getElementById('eng').value;
+        let math = document.getElementById('math').value;
+        let phy = document.getElementById('phy').value;
+        let chem = document.getElementById('chem').value;
+        let bio = document.getElementById('bio').value;
+
+        result.style.display = "block";
+
+        let totalMarks = parseFloat(beng) + parseFloat(eng) + parseFloat(math) + parseFloat(phy) + parseFloat(chem) + parseFloat(bio);
+        let percentage = totalMarks / 6;
+
+        total.innerHTML = totalMarks;
+        perc.innerHTML = percentage;
+
+        if (percentage >= 90) {
+            grade.innerHTML = "O";
+        }
+        else if (percentage >= 80) {
+            grade.innerHTML = "A+";
+        }
+        else if (percentage >= 70) {
+            grade.innerHTML = "A";
+        }
+        else if (percentage >= 60) {
+            grade.innerHTML = "B+";
+        }
+        else if (percentage >= 50) {
+            grade.innerHTML = "B";
+        }
+        else if (percentage >= 40) {
+            grade.innerHTML = "C";
+        }
+        else {
+            grade.innerHTML = "D";
+        }
+
+        if (percentage >= 40) {
+            status.innerHTML = "Passed";
+        }
+        else {
+            status.innerHTML = "Failed";
+        }
+    })
+</script>
+<script src="script.js"></script>
+</html>

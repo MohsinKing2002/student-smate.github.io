@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <title>www.studentMate.com | A real mate for the students</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    .grammerBox{
+        text-align: center;
+        padding: 1rem 2rem;
+        width: 35vw;
+        margin: 6.6% auto;
+        background-color: azure;
+        box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    #textBox{
+        width: 85%;
+        padding: 1rem;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        border: none;
+        outline: none;
+        resize: none;
+        height: 25vh;
+        border-radius: 10px;
+    }
+    #textBox:hover{
+        outline: 0.3px solid lightseagreen;
+    }
+
+    #textBox::-webkit-scrollbar{
+        display: none;
+    }
+
+    @media screen and (max-width: 1200px) {
+        .grammerBox{
+            width: 80%;
+            padding: 5px 10px;
+        }
+    }
+</style>
+<body>
+    <nav class="flex res">
+        <div class="logo flex">
+            <img src="img/logo.png" alt="">
+            <i class="brand">Student's Mate</i>
+        </div>
+    
+        <ul class="flex">
+            <a href="index.html">Home</a>
+            <a href="#grammerly">Grammerly</a>
+            <a href="calcy.html">Calcy</a>
+            <a href="quiz.html">Quiz Game</a>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="grammerBox">
+            <h2 class="title">Mate's Grammerly</h2>
+            <h3 class="contents">A Real time grammer checker and correctioner</h3>
+            <br>
+            <br>
+            <div class="textBox">
+                <textarea name="textBox" id="textBox" placeholder="Write Text here..."></textarea>
+                <button id="copyBtn" class="btn">Copy Text</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Copyrights&copy; | <i class="brand">student's Mate &reg;</i> | Alrights reserveds
+    </footer>
+</body>
+<script>
+    let copyBtn = document.getElementById('copyBtn');
+    let textBox = document.getElementById('textBox');
+
+    copyBtn.addEventListener('click', ()=>{
+        textBox.select();
+        textBox.setSelectionRange(0, 999);
+        navigator.clipboard.writeText(textBox.value);
+        copyBtn.innerHTML = "Text Copied";
+        copyBtn.style.backgroundColor = 'orangered';
+    })
+</script>
+<script src="script.js"></script>
+</html>
