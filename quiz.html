@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,23 +10,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <style>
-    .quizBox{
+    .quizBox {
         padding: 1rem 4rem;
         background-color: azure;
         width: 35vw;
         margin: 9.5% auto;
         box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.5);
     }
-    .question{
+
+    .question {
         font-size: 1.4rem;
         padding: 10px;
         color: midnightblue;
         letter-spacing: 1.5px;
     }
-    .quizBox ul{
+
+    .quizBox ul {
         padding: 20px 10px;
     }
-    .quizBox ul li{
+
+    .quizBox ul li {
         list-style: none;
         margin: 10px 0;
         font-size: 1.1rem;
@@ -33,12 +37,13 @@
         letter-spacing: 1px;
         color: midnightblue;
     }
-    #quizBtn{
+
+    #quizBtn {
         position: relative;
         left: 10vw;
     }
 
-    .scoreArea{
+    .scoreArea {
         display: none;
         padding: 1rem;
         text-align: center;
@@ -49,42 +54,55 @@
     }
 
     /*  responsiveness  */
-    @media screen and (max-width: 1200px){
-        .quizBox{
+    @media screen and (max-width: 1200px) {
+        .quizBox {
             width: 85%;
             padding: 5px 10px;
         }
-        .question{
+
+        .question {
             font-size: 12px;
             letter-spacing: 0.3px;
             font-weight: 400;
         }
-        .quizBox ul li{
-            font-size: 11px;
+
+        .quizBox ul li {
+            font-size: 13px;
             letter-spacing: 0.3px;
         }
 
-        #quizBtn{
-            left: 23vw;
+        #quizBtn {
+            left: 28vw;
         }
 
-        .scoreArea{
+        .scoreArea {
             width: 75%;
         }
+
+        .ftr {
+            position: fixed;
+            bottom: 0;
+            width: 100vw;
+        }
+
     }
 </style>
+
 <body>
     <nav class="flex res">
         <div class="logo flex">
             <img src="img/logo.png" alt="">
             <i class="brand">Student's Mate</i>
         </div>
-    
-        <ul class="flex">
-            <a href="index.html">Home</a>
-            <a href="#quiz">Quiz Game</a>
-            <a href="calcy.html">Calcy</a>
-            <a href="grammerly.html">Grammerly</a>
+
+        <ul>
+            <div class="resBtn">&boxH;</div>
+            <div class="showUL flex res">
+                <a href="index.html">Home</a>
+                <a href="#quiz">Quiz Game</a>
+                <a href="calcy.html">Calcy</a>
+                <a href="grammerly.html">Grammerly</a>
+            </div>
         </ul>
     </nav>
     <div class="container">
@@ -122,7 +140,7 @@
         </div>
     </div>
 
-    <footer>
+    <footer class="ftr">
         Copyrights&copy; | <i class="brand">student's Mate &reg;</i> | Alrights reserveds
     </footer>
 </body>
@@ -180,19 +198,19 @@
 
     let questionCount = 0;
     let totalScore = 0;
-    let loadQuestions = ()=>{
+    let loadQuestions = () => {
         question.innerHTML = quizData[questionCount].question;
         option1.innerHTML = quizData[questionCount].ans1;
         option2.innerHTML = quizData[questionCount].ans2;
         option3.innerHTML = quizData[questionCount].ans3;
         option4.innerHTML = quizData[questionCount].ans4;
     }
-    
+
     loadQuestions();
-    let getSelectedOption = ()=>{
+    let getSelectedOption = () => {
         let ans;
-        answers.forEach((currAnswer)=>{
-            if(currAnswer.checked){
+        answers.forEach((currAnswer) => {
+            if (currAnswer.checked) {
                 ans = currAnswer.id;
             }
         })
@@ -200,24 +218,24 @@
         return ans;
     }
 
-    let deselectOptions = ()=>{
-        answers.forEach((currAnswer)=>{
+    let deselectOptions = () => {
+        answers.forEach((currAnswer) => {
             currAnswer.checked = false;
         })
     }
 
-    quizBtn.addEventListener('click', ()=>{
+    quizBtn.addEventListener('click', () => {
         let correctAns = getSelectedOption();
-        
-        if(correctAns === quizData[questionCount].ans){
+
+        if (correctAns === quizData[questionCount].ans) {
             totalScore++;
         }
         deselectOptions();
         questionCount++;
-        if(questionCount < quizData.length){
+        if (questionCount < quizData.length) {
             loadQuestions();
         }
-        else{
+        else {
             scoreArea.style.display = 'block';
             score.innerHTML = `${totalScore} / ${quizData.length}`;
         }
@@ -225,4 +243,5 @@
 
 </script>
 <script src="script.js"></script>
+
 </html>

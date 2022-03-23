@@ -97,7 +97,16 @@ nav{
     margin-right: 1rem;
 }
 
-nav ul a{
+nav .showUL{
+    display: block;
+}
+nav .resBtn{
+    display: none;
+    font-size: 1.1rem;
+    color: white;
+    cursor: pointer;
+}
+nav .showUL a{
     font-size: 1.3rem;
     color: azure;
     margin: 0px 2rem;
@@ -106,7 +115,7 @@ nav ul a{
     transition: all 0.5s ease;
 }
 
-nav ul a:hover{
+nav .showUL a:hover{
     color: violet;
 }
 
@@ -149,6 +158,7 @@ nav ul a:hover{
 
 .box:hover{
     box-shadow: 5px 5px 20px -5px rgba(0, 0, 0, 0.5);
+    transform: translateY(6px);
 }
 
 .box img{
@@ -243,10 +253,22 @@ footer{
     .btn{
         font-size: 11px;
     }
+    nav{
+        padding: 5px 10px;
+    }
+    nav .resBtn{
+        display: block;
+    }
 
-    nav ul a{
+    nav .showUL{
+        display: none;
+        line-height: 1.6;
+        text-align: right;
+    }
+
+    nav .showUL a{
         font-size: 15px;
-        margin: 0px 5px;
+        margin: 0px 6px;
         padding: 0;
     }
 

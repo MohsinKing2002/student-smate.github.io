@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <style>
-    .grammerBox{
+    .grammerBox {
         text-align: center;
         padding: 1rem 2rem;
         width: 35vw;
@@ -18,7 +19,7 @@
         box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.5);
     }
 
-    #textBox{
+    #textBox {
         width: 85%;
         padding: 1rem;
         font-size: 1.1rem;
@@ -29,33 +30,44 @@
         height: 25vh;
         border-radius: 10px;
     }
-    #textBox:hover{
+
+    #textBox:hover {
         outline: 0.3px solid lightseagreen;
     }
 
-    #textBox::-webkit-scrollbar{
+    #textBox::-webkit-scrollbar {
         display: none;
     }
 
     @media screen and (max-width: 1200px) {
-        .grammerBox{
+        .grammerBox {
             width: 80%;
             padding: 5px 10px;
         }
+
+        .ftr {
+            position: fixed;
+            bottom: 0;
+            width: 100vw;
+        }
     }
 </style>
+
 <body>
     <nav class="flex res">
         <div class="logo flex">
             <img src="img/logo.png" alt="">
             <i class="brand">Student's Mate</i>
         </div>
-    
-        <ul class="flex">
-            <a href="index.html">Home</a>
-            <a href="#grammerly">Grammerly</a>
-            <a href="calcy.html">Calcy</a>
-            <a href="quiz.html">Quiz Game</a>
+
+        <ul>
+            <div class="resBtn">&boxH;</div>
+            <div class="showUL flex res">
+                <a href="index.html">Home</a>
+                <a href="#grammerly">Grammerly</a>
+                <a href="calcy.html">Calcy</a>
+                <a href="quiz.html">Quiz Game</a>
+            </div>
         </ul>
     </nav>
     <div class="container">
@@ -71,7 +83,7 @@
         </div>
     </div>
 
-    <footer>
+    <footer class="ftr">
         Copyrights&copy; | <i class="brand">student's Mate &reg;</i> | Alrights reserveds
     </footer>
 </body>
@@ -79,7 +91,7 @@
     let copyBtn = document.getElementById('copyBtn');
     let textBox = document.getElementById('textBox');
 
-    copyBtn.addEventListener('click', ()=>{
+    copyBtn.addEventListener('click', () => {
         textBox.select();
         textBox.setSelectionRange(0, 999);
         navigator.clipboard.writeText(textBox.value);
@@ -88,4 +100,5 @@
     })
 </script>
 <script src="script.js"></script>
+
 </html>
